@@ -41,9 +41,9 @@ void loop()
   float t = dht.readTemperature();
 
   SensoreMetanoValore = analogRead(200 + (4800 * SensoreMetano) / 1023);
-  SensoreAlcoolValore = analogRead(0.05 + (9.8 * SensoreMetano) / 1023);
-  SensoreMonossidoValore = analogRead(20 + (188 * SensoreMetano) / 1023);
-  SensoreIdrogenoValore = analogRead(1 + (99 * SensoreMetano) / 1023);
+  SensoreAlcoolValore = analogRead(0.05 + (9.8 * SensoreAlcool) / 1023);
+  SensoreMonossidoValore = analogRead(20 + (188 * SensoreMonossido) / 1023);
+  SensoreIdrogenoValore = analogRead(1 + (99 * SensoreIdrogeno) / 1023);
 
   Serial.print("Francesco Bevilacqua");
   Serial.println("   ");
