@@ -1,6 +1,6 @@
 
 
-// Francesco Bevilacqua  // 2022
+// Kicco  // 2022
 // modello "AA1", Analizzatore Ambientale portatile
 
 #include <DHT.h>
