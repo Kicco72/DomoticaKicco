@@ -1,7 +1,7 @@
 
 
-// Kicco  // 2022
-// modello "AA1", Analizzatore Ambientale portatile
+// Kicco972  // 2022
+// modello "AA1", Analizzatore Ambientale
 
 #include <DHT.h>
 #include <DHT_U.h>
@@ -25,38 +25,38 @@ float SensoreMonossidoValore = 0;
 int SensoreIdrogeno = A3;
 float SensoreIdrogenoValore = 0;
 
-void setup()
-{
+void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   lcd.init();
   dht.begin();
 }
 
-void loop()
-{
+void loop() {
   // put your main code here, to run repeatedly:
 
   float h = dht.readHumidity();
   float t = dht.readTemperature();
 
-  SensoreMetanoValore = analogRead(200 + (4800 * SensoreMetano) / 1023);
-  SensoreAlcoolValore = analogRead(0.05 + (9.8 * SensoreAlcool) / 1023);
-  SensoreMonossidoValore = analogRead(20 + (188 * SensoreMonossido) / 1023);
-  SensoreIdrogenoValore = analogRead(1 + (99 * SensoreIdrogeno) / 1023);
 
-  Serial.print("Francesco Bevilacqua");
+  SensoreMetanoValore = analogRead(SensoreMetano);
+  SensoreAlcoolValore = analogRead(SensoreAlcool);
+  SensoreMonossidoValore = analogRead(SensoreMonossido);
+  SensoreIdrogenoValore = analogRead(SensoreIdrogeno);
+
+  Serial.print("Prototipo AA1 Controllo ambiente");
   Serial.println("   ");
   Serial.println("   ");
   Serial.println("- - - - - - - - o - - - - - - - -");
-  Serial.print("- Metano            (ppm): ");
+  Serial.print("- Metano            (ppm):  ");
   Serial.println(SensoreMetanoValore, 1);
-  Serial.print("- Monossido di C.   (ppm): ");
+  Serial.print("- Alcool          (mmg/L): ");
+  Serial.println(SensoreAlcoolValore, 1);
+  Serial.print("- Monossido         (ppm): ");
   Serial.println(SensoreMonossidoValore, 1);
   Serial.print("- Idrogeno          (ppm): ");
   Serial.println(SensoreIdrogenoValore, 1);
-  Serial.print("- Alcool          (mmg/L): ");
-  Serial.println(SensoreAlcoolValore, 1);
+  
   Serial.println("- - - - - - - - o - - - - - - - -");
   Serial.print("- Umidita'            (%): ");
   Serial.println(h, 1);
@@ -65,19 +65,19 @@ void loop()
   Serial.println("- - - - - - - - o - - - - - - - -");
   Serial.println("----------------o----------------");
 
+
   lcd.backlight();
   lcd.setCursor(0, 0);
-  lcd.print(SensoreMetanoValore, 1);
-  lcd.print(" -Metano");
+  lcd.print(" -Metano      ");lcd.print(  SensoreMetanoValore, 1);
   lcd.setCursor(0, 1);
-  lcd.print(SensoreMonossidoValore, 1);
-  lcd.print("  -Monossido");
+  lcd.print(" -Alcool     ");lcd.print(  SensoreAlcoolValore, 1); 
   lcd.setCursor(0, 2);
-  lcd.print(SensoreIdrogenoValore, 1);
-  lcd.print(" -Idrogeno");
+  lcd.print(" -Monossido  ");lcd.print(  SensoreMonossidoValore, 1);
   lcd.setCursor(0, 3);
-  lcd.print(SensoreAlcoolValore, 1);
-  lcd.print("  -Alcool");
+  lcd.print(" -Idrogeno   ");lcd.print(  SensoreIdrogenoValore, 1); 
+  
+   
+
 
   delay(5000);
 }
